@@ -1,0 +1,11 @@
+{
+	"mcpServers": {
+		"sychev-lab": {
+			"command": "npx",
+			"args": ["-y", "sychev-lab-mcp-server"],
+			"env": {
+				"SYCHEV_LAB_URL": "https://lab.sychev.xyz"
+			}
+		}
+	}
+}
