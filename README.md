@@ -56,7 +56,7 @@ node dist/index.js --http 3000
 | Variable | Descripción | Default |
 |----------|-------------|---------|
 | `SYCHEV_LAB_URL` | URL base de la API | `https://lab.sychev.xyz` |
-| `MCP_API_KEY` | API key para modo HTTP | `dev-key-change-in-production` |
+| `MCP_API_KEY` | API key opcional para modo HTTP | - |
 
 ## Configuración con Claude Desktop
 
@@ -66,14 +66,20 @@ Añade a tu configuración de Claude Desktop (`claude_desktop_config.json`):
 {
   "mcpServers": {
     "sychev-lab": {
-      "command": "node",
-      "args": ["/ruta/al/mcp-server/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "sychev-lab-mcp-server"],
       "env": {
         "SYCHEV_LAB_URL": "https://lab.sychev.xyz"
       }
     }
   }
 }
+```
+
+O instala globalmente:
+
+```bash
+npm install -g sychev-lab-mcp-server
 ```
 
 ## Endpoints HTTP
@@ -83,10 +89,14 @@ Cuando se ejecuta en modo HTTP:
 - `POST /mcp/v1/tools/list` - Lista herramientas disponibles
 - `POST /mcp/v1/tools/call` - Ejecuta una herramienta
 
-Headers requeridos:
+Headers:
+```
+Content-Type: application/json
+```
+
+Autenticación opcional (si se configura `MCP_API_KEY`):
 ```
 Authorization: Bearer <MCP_API_KEY>
-Content-Type: application/json
 ```
 
 ## Scripts
