@@ -1,0 +1,28 @@
+name: sychev-lab-mcp-server
+description: MCP Server for Sychev Lab - Products, Articles, Tutorials, and Commerce
+version: 1.0.0
+author: Anton Sychev
+license: MIT
+repository: https://github.com/Sychev-Lab/sychev-lab-mcp-server
+homepage: https://lab.sychev.xyz/mcp
+transport:
+  - type: stdio
+    command: npx -y sychev-lab-mcp-server
+  - type: http
+    url: https://lab.sychev.xyz/mcp
+  - type: sse
+    url: https://lab.sychev.xyz/sse
+categories:
+  - ecommerce
+  - 3d-printing
+  - marketplace
+keywords:
+  - mcp
+  - model-context-protocol
+  - sychev-lab
+  - ecommerce
+  - stl
+  - 3d-printing
+  - airsoft
+  - automotive
+  - electronics

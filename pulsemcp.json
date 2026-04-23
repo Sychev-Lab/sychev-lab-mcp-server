@@ -1,0 +1,56 @@
+{
+	"name": "Sychev Lab MCP Server",
+	"description": "Official MCP server for Sychev Lab marketplace. Browse and purchase 3D models for airsoft (HPA kits, alignment tools), automotive (Lexus IS200/IS300), and electronics. Includes articles, tutorials, and secure Stripe checkout.",
+	"version": "1.0.0",
+	"author": "Anton Sychev",
+	"license": "MIT",
+	"repository": "https://github.com/Sychev-Lab/sychev-lab-mcp-server",
+	"homepage": "https://lab.sychev.xyz/mcp",
+	"documentation": "https://lab.sychev.xyz/mcp",
+	"transports": [
+		{
+			"type": "stdio",
+			"command": "npx -y sychev-lab-mcp-server"
+		},
+		{
+			"type": "http",
+			"url": "https://lab.sychev.xyz/mcp"
+		},
+		{
+			"type": "sse",
+			"url": "https://lab.sychev.xyz/sse"
+		}
+	],
+	"capabilities": {
+		"tools": {
+			"list": true,
+			"call": true
+		}
+	},
+	"categories": ["ecommerce", "3d-printing", "marketplace"],
+	"keywords": [
+		"mcp",
+		"model-context-protocol",
+		"sychev-lab",
+		"ecommerce",
+		"stl",
+		"3d-printing",
+		"airsoft",
+		"automotive",
+		"electronics",
+		"hpa",
+		"stripe"
+	],
+	"tools": [
+		"list_products",
+		"get_product_details",
+		"search_products_by_category",
+		"get_categories",
+		"list_articles",
+		"get_article",
+		"list_tutorials",
+		"get_tutorial",
+		"register_user",
+		"create_stripe_checkout"
+	]
+}
