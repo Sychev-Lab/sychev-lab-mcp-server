@@ -9,8 +9,7 @@
 	},
 	"files": [
 		"dist/**/*",
-		"README.md",
-		"LICENSE"
+		"README.md"
 	],
 	"scripts": {
 		"build": "tsc",
@@ -35,7 +34,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/klich3/sychev-lab-mcp-server"
+		"url": "git+https://github.com/Sychev-Lab/sychev-lab-mcp-server.git"
 	},
 	"bugs": {
 		"url": "https://github.com/Sychev-Lab/sychev-lab-mcp-server/issues"
