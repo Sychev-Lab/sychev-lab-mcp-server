@@ -136,8 +136,8 @@ class ApiClient {
     }
 
     // Categories
-    async getCategories(): Promise<{ data: { categories: Category[] } }> {
-        return this.fetch<{ data: { categories: Category[] } }>('/api/lab/categories.json');
+    async getCategories(): Promise<{ categories: Category[] }> {
+        return this.fetch<{ categories: Category[] }>('/api/lab/categories.json');
     }
 
     // Search products by category (fuzzy search)
