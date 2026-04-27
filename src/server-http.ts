@@ -9,7 +9,6 @@
 import http from "http";
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import type { Tool } from "@modelcontextprotocol/sdk/types.js";
 import { zodToJsonSchema } from "zod-to-json-schema";
@@ -187,33 +186,6 @@ async function handleMcp(req: http.IncomingMessage, res: http.ServerResponse) {
 	await transport.handleRequest(req, res);
 }
 
-// ── SSE Legacy ────────────────────────────────────────────────────────
-
-const sseSessions = new Map<string, SSEServerTransport>();
-
-async function handleSse(req: http.IncomingMessage, res: http.ServerResponse) {
-	const transport = new SSEServerTransport("/messages", res, {
-		enableDnsRebindingProtection: false,
-	});
-	sseSessions.set(transport.sessionId, transport);
-	const server = createServer();
-	await server.connect(transport);
-	res.on("close", () => sseSessions.delete(transport.sessionId));
-}
-
-async function handleMessages(req: http.IncomingMessage, res: http.ServerResponse) {
-	const url = new URL(req.url || "/messages", `http://${req.headers.host}`);
-	const sessionId = url.searchParams.get("sessionId") || undefined;
-
-	if (!sessionId || !sseSessions.has(sessionId)) {
-		res.writeHead(404).end(JSON.stringify({ error: "Session not found" }));
-		return;
-	}
-
-	const transport = sseSessions.get(sessionId)!;
-	await transport.handlePostMessage(req, res);
-}
-
 // ── HTTP Server ───────────────────────────────────────────────────────
 
 validateConfig();
@@ -233,10 +205,6 @@ const httpServer = http.createServer(async (req, res) => {
 	try {
 		if (pathname === "/mcp") {
 			await handleMcp(req, res);
-		} else if (pathname === "/sse") {
-			await handleSse(req, res);
-		} else if (pathname === "/messages") {
-			await handleMessages(req, res);
 		} else if (pathname === "/health") {
 			res.writeHead(200, { "Content-Type": "application/json" });
 			res.end(JSON.stringify({ status: "ok", server: config.name, version: config.version }));
@@ -249,7 +217,6 @@ const httpServer = http.createServer(async (req, res) => {
 					description: "Accede al catalogo de modelos 3D de Sychev Lab: airsoft, automocion y electronica",
 					endpoints: {
 						streamable_http: `${config.baseUrl}/mcp`,
-						sse: `${config.baseUrl}/sse`,
 					},
 					capabilities: { tools: {} },
 				}),
@@ -271,10 +238,8 @@ httpServer.listen(PORT, () => {
 	console.log(`Sychev Lab MCP Server v${config.version}`);
 	console.log(`Connected to: ${config.baseUrl}`);
 	console.log(`HTTP transport running on port ${PORT}`);
-	console.log("\nEndpoints:");
+	console.log(`\nEndpoints:`);
 	console.log(`  POST/DELETE http://localhost:${PORT}/mcp     (Streamable HTTP)`);
-	console.log(`  GET         http://localhost:${PORT}/sse     (SSE Legacy)`);
-	console.log(`  POST        http://localhost:${PORT}/messages (SSE Messages)`);
 	console.log(`  GET         http://localhost:${PORT}/health  (Health Check)`);
 	console.log(`  GET         http://localhost:${PORT}/.well-known/mcp (Discovery)`);
 });

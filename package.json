@@ -1,6 +1,6 @@
 {
 	"name": "sychev-lab-mcp-server",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "MCP Server for Sychev Lab - Products, Articles, Tutorials, and Commerce",
 	"type": "module",
 	"main": "dist/index.js",

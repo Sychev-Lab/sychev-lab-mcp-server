@@ -1,7 +1,7 @@
 {
 	"name": "Sychev Lab MCP Server",
 	"description": "Official MCP server for Sychev Lab marketplace. Browse and purchase 3D models for airsoft (HPA kits, alignment tools), automotive (Lexus IS200/IS300), and electronics. Includes articles, tutorials, and secure Stripe checkout.",
-	"version": "1.0.0",
+	"version": "1.0.6",
 	"author": "Anton Sychev",
 	"license": "MIT",
 	"repository": "https://github.com/Sychev-Lab/sychev-lab-mcp-server",
@@ -15,10 +15,6 @@
 		{
 			"type": "http",
 			"url": "https://lab.sychev.xyz/mcp"
-		},
-		{
-			"type": "sse",
-			"url": "https://lab.sychev.xyz/sse"
 		}
 	],
 	"capabilities": {
