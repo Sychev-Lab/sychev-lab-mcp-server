@@ -16,10 +16,7 @@ Añade en Settings → Integrations: `https://lab.sychev.xyz/mcp`
 	"mcpServers": {
 		"sychev-lab": {
 			"command": "npx",
-			"args": ["-y", "sychev-lab-mcp-server"],
-			"env": {
-				"SYCHEV_LAB_URL": "https://lab.sychev.xyz"
-			}
+			"args": ["-y", "sychev-lab-mcp-server"]
 		}
 	}
 }
@@ -95,10 +92,9 @@ node dist/index.js --http 3000
 
 ### Variables de Entorno
 
-| Variable         | Descripción                     | Default                  |
-| ---------------- | ------------------------------- | ------------------------ |
-| `SYCHEV_LAB_URL` | URL base de la API              | `https://lab.sychev.xyz` |
-| `MCP_API_KEY`    | API key opcional para modo HTTP | -                        |
+| Variable      | Descripción                     | Default |
+| ------------- | ------------------------------- | ------- |
+| `MCP_API_KEY` | API key opcional para modo HTTP | -       |
 
 ## Configuración con Claude Desktop
 
@@ -109,10 +105,7 @@ Añade a tu configuración de Claude Desktop (`claude_desktop_config.json`):
 	"mcpServers": {
 		"sychev-lab": {
 			"command": "npx",
-			"args": ["-y", "sychev-lab-mcp-server"],
-			"env": {
-				"SYCHEV_LAB_URL": "https://lab.sychev.xyz"
-			}
+			"args": ["-y", "sychev-lab-mcp-server"]
 		}
 	}
 }
@@ -156,10 +149,11 @@ Mcp-Session-Id: <session-id>
 
 ```
 src/
-├── index.ts    # Punto de entrada y servidor MCP
-├── tools.ts    # Definiciones e implementaciones de herramientas
-├── client.ts   # Cliente HTTP para la API de Sychev Lab
-└── config.ts   # Configuración del servidor
+├── index.ts       # Punto de entrada MCP (modo stdio)
+├── server-http.ts # Servidor MCP con Streamable HTTP
+├── tools.ts       # Definiciones e implementaciones de herramientas
+├── client.ts      # Cliente HTTP para la API de Sychev Lab
+└── config.ts      # Configuración del servidor
 ```
 
 ## Licencia
