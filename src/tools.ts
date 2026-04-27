@@ -180,7 +180,7 @@ export async function getTutorial(args: z.infer<typeof GetTutorialSchema>) {
 export async function getCategories(args: z.infer<typeof GetCategoriesSchema>) {
     try {
         const response = await apiClient.getCategories();
-        const categories = response?.data?.categories || [];
+        const categories = response?.categories || [];
         return {
             content: [{
                 type: 'text',

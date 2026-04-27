@@ -1,7 +1,7 @@
 {
 	"name": "Sychev Lab MCP Server",
 	"description": "MCP Server for Sychev Lab - Access 3D models, articles, tutorials and Stripe checkout",
-	"version": "1.0.0",
+	"version": "1.0.6",
 	"author": "Anton Sychev",
 	"license": "MIT",
 	"repository": "https://github.com/Sychev-Lab/sychev-lab-mcp-server",
@@ -14,10 +14,6 @@
 		{
 			"type": "http",
 			"url": "https://lab.sychev.xyz/mcp"
-		},
-		{
-			"type": "sse",
-			"url": "https://lab.sychev.xyz/sse"
 		}
 	],
 	"categories": ["ecommerce", "3d-printing", "marketplace"],

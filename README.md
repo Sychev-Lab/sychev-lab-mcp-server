@@ -28,8 +28,6 @@ Añade en Settings → Integrations: `https://lab.sychev.xyz/mcp`
 **Endpoints HTTP:**
 
 - `POST/DELETE /mcp` — Streamable HTTP (estándar MCP 2025-06-18)
-- `GET /sse` — SSE Legacy
-- `POST /messages` — Mensajes SSE Legacy
 - `GET /.well-known/mcp` — Descubrimiento automático
 
 ## Características
@@ -73,7 +71,7 @@ npm start
 node dist/index.js
 ```
 
-### Modo HTTP (Streamable HTTP + SSE)
+### Modo HTTP (Streamable HTTP)
 
 ```bash
 npm run start:http
@@ -84,8 +82,6 @@ PORT=3001 node dist/server-http.js
 Endpoints disponibles:
 
 - `POST/DELETE /mcp` - Streamable HTTP (estandar MCP 2025-06-18)
-- `GET /sse` - SSE Legacy
-- `POST /messages` - Mensajes SSE Legacy
 - `GET /health` - Health check
 - `GET /.well-known/mcp` - Descubrimiento automatico
 
@@ -132,10 +128,8 @@ npm install -g sychev-lab-mcp-server
 
 Cuando se ejecuta en modo HTTP (`npm run start:http`):
 
-- `POST /mcp` - Streamable HTTP (nuevo estandar MCP)
+- `POST /mcp` - Streamable HTTP (estandar MCP 2025-06-18)
 - `DELETE /mcp` - Cerrar sesion Streamable HTTP
-- `GET /sse` - SSE Legacy (compatibilidad)
-- `POST /messages` - Mensajes SSE Legacy
 - `GET /health` - Health check
 - `GET /.well-known/mcp` - Descubrimiento automatico
 
